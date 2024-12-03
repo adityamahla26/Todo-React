@@ -1,48 +1,35 @@
-import React from "react";
-
+import { useState } from "react";
+import menuItems from "../constants/menuItems.ts";
 const Sidebar = () => {
+  const [selected, setSelected] = useState("home");
   return (
     <div className="flex">
       {/* Sidebar */}
       <div className="w-64 bg-[#FFFFFF] text-[#000000] h-screen">
         <h2 className="text-2xl font-normal py-4 bg-[#0ACBF5] w-[60%] rounded-tr-full rounded-br-full mt-2 whitespace-nowrap flex justify-start pl-5">
-          my&nbsp;<span className="text-[#FFFFFF]"> todo</span>
+          My&nbsp;<span className="text-[#FFFFFF]"> todo</span>
         </h2>
 
         {/* Sidebar Links */}
         <ul className="mt-4 space-y-4">
-          <li>
-            <a
-              href="#home"
-              className="block px-4 py-2 hover:bg-blue-700 rounded-md"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="#list-of-todos"
-              className="block px-4 py-2 hover:bg-blue-700 rounded-md"
-            >
-              Lists of Todos
-            </a>
-          </li>
-          <li>
-            <a
-              href="#pending-todos"
-              className="block px-4 py-2 hover:bg-blue-700 rounded-md"
-            >
-              Pending Todos
-            </a>
-          </li>
-          <li>
-            <a
-              href="#completed-todos"
-              className="block px-4 py-2 hover:bg-blue-700 rounded-md"
-            >
-              Completed Todos
-            </a>
-          </li>
+          {menuItems.map((item) => (
+            <li key={item.id} onClick={() => setSelected(item.id)}>
+              <a
+                href={`#${item.id}`}
+                className="px-4 py-2 flex items-center gap-2"
+              >
+                <img
+                  src={
+                    selected === item.id
+                      ? item.icons.selected
+                      : item.icons.notSelected
+                  }
+                  alt={`${item.label} Icon`}
+                />
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
