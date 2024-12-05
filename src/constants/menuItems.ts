@@ -9,7 +9,7 @@ interface MenuItems {
 
 const menuItems: MenuItems[] = [
   {
-    id: "home",
+    id: "",
     label: "Home",
     icons: {
       selected: "/src/assets/icons/Home-Selected.svg",
