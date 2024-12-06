@@ -2,7 +2,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toDoSchema, ToDoFormValues } from "../schemas/toDoSchema";
 import CalenderIcon from "../assets/icons/Calendar.svg";
-const Home = () => {
+
+interface HomeProps {
+  addTodo: (todo: ToDoFormValues) => void;
+}
+
+const Home: React.FC<HomeProps> = ({ addTodo }) => {
   const {
     register,
     handleSubmit,
@@ -12,6 +17,7 @@ const Home = () => {
 
   const onSubmit = (data: ToDoFormValues) => {
     console.log("Form Submitted:", data);
+    addTodo(data);
     reset();
   };
 

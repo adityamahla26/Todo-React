@@ -14,6 +14,7 @@ export const toDoSchema = z.object({
   deadline: z.string().refine((value) => !isNaN(Date.parse(value)), {
     message: "Enter a valid date and time",
   }),
+  completed: z.boolean().default(false),
 });
 
 export type ToDoFormValues = z.infer<typeof toDoSchema>;
